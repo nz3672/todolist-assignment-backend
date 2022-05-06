@@ -1,7 +1,7 @@
 from todolist.models import Task
 from .serializers import TaskSerializer
 
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
@@ -17,3 +17,15 @@ class TaskViewSet(viewsets.ModelViewSet):
     def delete_all(self, request):
         Task.objects.all().delete()
         return Response("Deleted")
+
+    def put(self, request):
+        tasks = request.data
+        
+        for item in tasks:
+            itemId = item.get('id')
+            task = Task.objects.get(pk=itemId)
+            task.task_info = item.get('task_info')
+            task.task_status = item.get('task_status')
+            task.save()
+
+        return Response("Success")

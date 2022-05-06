@@ -125,4 +125,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRF Settings
-CSRF_TRUSTED_ORIGINS = ['http://localhost:9000/']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000/']
